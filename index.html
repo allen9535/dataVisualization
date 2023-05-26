@@ -8,7 +8,21 @@
 </head>
 <body>
     <script>
-        //
+        fetch('https://raw.githubusercontent.com/allen9535/dataVisualization/main/data.json')
+        .then(data => data.json())
+        .then(data => {
+            const body = document.querySelector('body');
+            const order_pop = document.createElement('ol');
+            for (const i of data) {
+                const local = document.createElement('li')
+                local.innerText = i.지역 + i.인구;
+                order_pop.append(local);
+            }
+            body.append(order_pop);
+        })
+        .catch(error => {
+            alert('데이터를 읽어올 수 없습니다');
+        })
     </script>
 </body>
 </html>
